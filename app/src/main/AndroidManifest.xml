@@ -13,6 +13,12 @@
         android:theme="@style/Theme.BestStore"
         tools:targetApi="34">
         <activity
+            android:name=".RegistrationActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".loginActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.LoginActivity"
             android:exported="false" />
         <activity
