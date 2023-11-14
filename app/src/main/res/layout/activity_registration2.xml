@@ -8,7 +8,8 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/blur"/>
+        android:src="@drawable/blur"
+        android:scaleType="centerCrop"/>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -16,8 +17,8 @@
             android:id="@+id/tvAppname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_light"
-            android:layout_marginTop="100dp"
+            style="@style/h3"
+            android:layout_marginTop="5dp"
             android:drawablePadding="6dp"
             android:textStyle="bold"
             android:text="MyStore"
@@ -27,12 +28,12 @@
 
         <TextView
             android:id="@+id/tbLetLogin"
-            android:fontFamily="@font/poppins_light"
+            style="@style/h4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:gravity="center"
-            android:text="Let`s Login"
+            android:text="Let`s Register"
             android:textAlignment="center"
             android:textSize="35sp"
             app:layout_constraintTop_toBottomOf="@id/tvAppname"
@@ -42,40 +43,63 @@
             android:id="@+id/tvDontHaveAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_light"
-
+            style="@style/h2"
             android:textAlignment="center"
             android:gravity="center"
-            android:text="Do not Have An Account ? Register Now!"
+            android:text="Do you Have An Account ? Login Now!"
             android:textSize="14sp"
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="@id/guideLineLoginLeft"
             app:layout_constraintTop_toBottomOf="@id/tbLetLogin"
             />
         <EditText
-            android:id="@+id/edEmailLogin"
+            android:id="@+id/edFirstNmaeRegister"
             android:layout_width="0dp"
             android:layout_height="@dimen/editTextHeight"
             app:layout_constraintStart_toStartOf="@id/guideLineLoginLeft"
             app:layout_constraintEnd_toEndOf="@id/guideLineLoginRight"
             app:layout_constraintTop_toBottomOf="@id/tvDontHaveAccount"
             style="@style/editText"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:layout_marginTop="50dp"/>
+            android:hint="First Name"
+            android:inputType="textPersonName"
+            android:layout_marginTop="0dp"/>
         <!--        pass word-->
         <EditText
-            android:id="@+id/edPasswordLogin"
+            android:id="@+id/edLastNameRegister"
             android:layout_width="0dp"
             android:layout_height="@dimen/editTextHeight"
             app:layout_constraintStart_toStartOf="@id/guideLineLoginLeft"
             app:layout_constraintEnd_toEndOf="@id/guideLineLoginRight"
-            app:layout_constraintTop_toBottomOf="@id/edEmailLogin"
+            app:layout_constraintTop_toBottomOf="@id/edFirstNmaeRegister"
             style="@style/editText"
-            android:hint="Password"
+            android:hint="Last Name"
+            android:inputType="textPersonName"
+            android:layout_marginTop="20dp"/>
+        <!--        pass word-->
+        <EditText
+            android:id="@+id/edEmailRegister"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/editTextHeight"
+            app:layout_constraintStart_toStartOf="@id/guideLineLoginLeft"
+            app:layout_constraintEnd_toEndOf="@id/guideLineLoginRight"
+            app:layout_constraintTop_toBottomOf="@id/edLastNameRegister"
+            style="@style/editText"
+            android:hint="Email"
             android:inputType="textEmailAddress"
             android:layout_marginTop="20dp"/>
-
+        <!--        pass word-->
+        <EditText
+            android:id="@+id/edPasswordRegister"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/editTextHeight"
+            app:layout_constraintStart_toStartOf="@id/guideLineLoginLeft"
+            app:layout_constraintEnd_toEndOf="@id/guideLineLoginRight"
+            app:layout_constraintTop_toBottomOf="@id/edEmailRegister"
+            style="@style/editText"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:layout_marginTop="20dp"/>
+        <!--        btn login-->
         <TextView
             android:id="@+id/tvForgotPasswordLogin"
             android:layout_width="wrap_content"
@@ -86,9 +110,9 @@
             android:text="Forgot Password Login!"
             android:textSize="14sp"
             android:layout_marginTop="10dp"
-            android:textColor="@color/g_black"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="@id/guideLineLoginLeft"
-            app:layout_constraintTop_toBottomOf="@id/edPasswordLogin"
+            app:layout_constraintTop_toBottomOf="@id/edPasswordRegister"
             />
         <!--        Facebook Login-->
         <ImageView
@@ -97,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             app:layout_constraintStart_toStartOf="@id/guideLineLoginLeft"
-            app:layout_constraintTop_toBottomOf="@id/buttonLoginlogin"
+            app:layout_constraintTop_toBottomOf="@id/buttonRegisterRegister"
             android:src="@drawable/facebook_login"/>
         <TextView
             android:layout_width="wrap_content"
@@ -114,7 +138,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="@id/guideLineLoginRight"
-            app:layout_constraintTop_toBottomOf="@id/buttonLoginlogin"
+            app:layout_constraintTop_toBottomOf="@id/buttonRegisterRegister"
             android:src="@drawable/google_login"/>
         <TextView
             android:layout_width="wrap_content"
@@ -126,9 +150,9 @@
             app:layout_constraintEnd_toEndOf="@id/GoogleLogin"/>
         <!--        Button Login-->
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonLoginlogin"
+            android:id="@+id/buttonRegisterRegister"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="@dimen/smallButtonHeight"
             style="@style/blueButtonStyle"
             app:layout_constraintTop_toBottomOf="@+id/tvForgotPasswordLogin"
             app:layout_constraintStart_toStartOf="@id/guideLineLoginLeft"
