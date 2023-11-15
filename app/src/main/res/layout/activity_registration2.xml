@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,10 +18,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/h3"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:drawablePadding="6dp"
             android:textStyle="bold"
-            android:text="MyStore"
+            android:text="HereWeGo"
+            android:letterSpacing="0.3"
             app:layout_constraintStart_toStartOf="@+id/guideLineLoginLeft"
             app:layout_constraintTop_toTopOf="parent"
             />
@@ -31,7 +32,7 @@
             style="@style/h4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="70dp"
             android:gravity="center"
             android:text="Let`s Register"
             android:textAlignment="center"
@@ -46,23 +47,23 @@
             style="@style/h2"
             android:textAlignment="center"
             android:gravity="center"
-            android:text="Do you Have An Account ? Login Now!"
+            android:text="Do you Have An Account ?"
             android:textSize="14sp"
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="@id/guideLineLoginLeft"
             app:layout_constraintTop_toBottomOf="@id/tbLetLogin"
             />
-        <EditText
-            android:id="@+id/edFirstNmaeRegister"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/editTextHeight"
-            app:layout_constraintStart_toStartOf="@id/guideLineLoginLeft"
-            app:layout_constraintEnd_toEndOf="@id/guideLineLoginRight"
-            app:layout_constraintTop_toBottomOf="@id/tvDontHaveAccount"
-            style="@style/editText"
-            android:hint="First Name"
-            android:inputType="textPersonName"
-            android:layout_marginTop="0dp"/>
+        <TextView
+            android:id="@+id/sign_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text=" Login Now!"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDontHaveAccount"
+            app:layout_constraintStart_toEndOf="@+id/tvDontHaveAccount"
+            app:layout_constraintTop_toTopOf="@+id/tvDontHaveAccount"
+            app:layout_constraintVertical_bias="0.0" />
+
         <!--        pass word-->
         <EditText
             android:id="@+id/edLastNameRegister"
@@ -70,9 +71,9 @@
             android:layout_height="@dimen/editTextHeight"
             app:layout_constraintStart_toStartOf="@id/guideLineLoginLeft"
             app:layout_constraintEnd_toEndOf="@id/guideLineLoginRight"
-            app:layout_constraintTop_toBottomOf="@id/edFirstNmaeRegister"
+            app:layout_constraintTop_toBottomOf="@id/tvDontHaveAccount"
             style="@style/editText"
-            android:hint="Last Name"
+            android:hint="Full Name"
             android:inputType="textPersonName"
             android:layout_marginTop="20dp"/>
         <!--        pass word-->
@@ -173,4 +174,4 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.91"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
