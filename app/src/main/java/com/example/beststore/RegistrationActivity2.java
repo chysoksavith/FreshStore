@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,8 @@ public class RegistrationActivity2 extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase database;
 
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,8 @@ public class RegistrationActivity2 extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
+        progressBar = findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.GONE);
         signUp = findViewById(R.id.buttonRegisterRegister);
         name = findViewById(R.id.edLastNameRegister);
         email = findViewById(R.id.edEmailRegister);
@@ -53,6 +58,7 @@ public class RegistrationActivity2 extends AppCompatActivity {
             public void onClick(View v) {
 
                 createUser();
+                progressBar.setVisibility(View.VISIBLE);
 
             }
         });
@@ -92,8 +98,10 @@ public class RegistrationActivity2 extends AppCompatActivity {
                             UserModel userModel = new UserModel(userName,userEmail,userPassword);
                             String id = task.getResult().getUser().getUid();
                             database.getReference().child("Users").child(id).setValue(userModel);
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(RegistrationActivity2.this, "Registration Success", Toast.LENGTH_SHORT).show();
                         }else {
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(RegistrationActivity2.this, "Failed Register"+task.getException(), Toast.LENGTH_SHORT).show();
                         }
                     }
