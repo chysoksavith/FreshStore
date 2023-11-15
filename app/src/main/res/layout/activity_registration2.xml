@@ -158,7 +158,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvForgotPasswordLogin"
             app:layout_constraintStart_toStartOf="@id/guideLineLoginLeft"
             app:layout_constraintEnd_toEndOf="@id/guideLineLoginRight"
-            android:text="Login"
+            android:text="Sign Up"
             android:layout_marginTop="25dp"
             android:letterSpacing="0.5"/>
         <androidx.constraintlayout.widget.Guideline

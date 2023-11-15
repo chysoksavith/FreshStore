@@ -12,10 +12,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.beststore.Models.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationActivity2 extends AppCompatActivity {
 
@@ -24,6 +26,7 @@ public class RegistrationActivity2 extends AppCompatActivity {
     TextView signIn;
 
     FirebaseAuth auth;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class RegistrationActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_registration2);
 
         auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
         signUp = findViewById(R.id.buttonRegisterRegister);
         name = findViewById(R.id.edLastNameRegister);
         email = findViewById(R.id.edEmailRegister);
@@ -84,6 +88,10 @@ public class RegistrationActivity2 extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+
+                            UserModel userModel = new UserModel(userName,userEmail,userPassword);
+                            String id = task.getResult().getUser().getUid();
+                            database.getReference().child("Users").child(id).setValue(userModel);
                             Toast.makeText(RegistrationActivity2.this, "Registration Success", Toast.LENGTH_SHORT).show();
                         }else {
                             Toast.makeText(RegistrationActivity2.this, "Failed Register"+task.getException(), Toast.LENGTH_SHORT).show();
