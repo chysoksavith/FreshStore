@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/blur"
+        android:scaleType="centerCrop"
+        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvAppname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/h3"
+            android:layout_marginTop="3dp"
+            android:drawablePadding="6dp"
+            android:textStyle="bold"
+            android:text="HereWeGo"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvRightAddressForShopping"
+            style="@style/h4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="@string/rightAddress"
+            android:textAlignment="center"
+            android:textSize="35sp"
+            app:layout_constraintTop_toBottomOf="@id/tvAppname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/tvQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/h2"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:text="@string/quanlity"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/tvRightAddressForShopping"
+            app:layout_constraintEnd_toEndOf="@id/tvRightAddressForShopping"
+            app:layout_constraintTop_toBottomOf="@id/tvRightAddressForShopping"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="Register"
+            android:id="@+id/buttonRegisterAccountOptions"
+            style="@style/blueButtonStyle"
+            android:layout_width="@dimen/smallButtonWidth"
+            android:layout_height="@dimen/smallButtonHeight"
+            android:letterSpacing="0.5"
+            android:text="Register"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tvQuantity"
+            app:layout_constraintHorizontal_bias="0.523"
+            app:layout_constraintStart_toStartOf="@id/tvQuantity"
+            app:layout_constraintTop_toBottomOf="@+id/tvQuantity"
+            app:layout_constraintVertical_bias="0.497" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="Login"
+            android:id="@+id/buttonLoginAccountOPtions"
+            android:layout_width="@dimen/smallButtonWidth"
+            android:layout_height="@dimen/smallButtonHeight"
+            style="@style/blueButtonStyle"
+            app:layout_constraintStart_toStartOf="@id/tvQuantity"
+            app:layout_constraintEnd_toEndOf="@id/tvQuantity"
+            app:layout_constraintTop_toBottomOf="@+id/buttonRegisterAccountOptions"
+            android:text="Login"
+            android:layout_marginTop="10dp"
+            android:letterSpacing="0.5"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
