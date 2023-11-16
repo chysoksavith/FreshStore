@@ -16,6 +16,8 @@ import com.example.beststore.databinding.FragmentHomeBinding;
 public class HomeFragment extends Fragment {
 
 
+    //popularitem
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
