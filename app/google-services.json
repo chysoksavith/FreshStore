@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "235282754008",
-    "project_id": "beststore-b45ec",
-    "storage_bucket": "beststore-b45ec.appspot.com"
+    "project_number": "223984097624",
+    "project_id": "beststore-a9e64",
+    "storage_bucket": "beststore-a9e64.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:235282754008:android:f6d423939573f247d2eaad",
+        "mobilesdk_app_id": "1:223984097624:android:82bf25eb933dcb08186d2d",
         "android_client_info": {
           "package_name": "com.example.beststore"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAHjNmzz1oRM2g8C-qqEq2y_UpCzWd8wuM"
+          "current_key": "AIzaSyCVIudkGyFmajmJwmLbXtfithPyhJUiync"
         }
       ],
       "services": {
