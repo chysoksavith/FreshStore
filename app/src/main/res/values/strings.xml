@@ -12,4 +12,12 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="rightAddress">Welcome to HereWeGo\nThe best \nIn town\n</string>
     <string name="quanlity">Our Shop are Provide\nThe best product \n For you</string>
+    <string name="profile">Profile</string>
+    <string name="category">Category</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="offers">Offers</string>
+    <string name="newproduct">NewProduct</string>
+    <string name="orders">Orders</string>
+    <string name="carts">Carts</string>
 </resources>
