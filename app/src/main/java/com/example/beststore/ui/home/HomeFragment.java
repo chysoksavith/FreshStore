@@ -13,9 +13,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.beststore.Models.HomeCategory;
 import com.example.beststore.Models.PopularModel;
+import com.example.beststore.Models.RecommendModel;
 import com.example.beststore.R;
+import com.example.beststore.adapter.HomeAdapter;
 import com.example.beststore.adapter.PopularAdapter;
+import com.example.beststore.adapter.RecommentAdapter;
 import com.example.beststore.databinding.FragmentHomeBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,17 +32,30 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    RecyclerView popularRec;
+    RecyclerView popularRec, homeCatRec, recommendRec;
     FirebaseFirestore db;
     //popularitem
-
     List<PopularModel> popularModelList;
     PopularAdapter popularAdapter;
+
+    //Homecategory
+    List<HomeCategory> categoryList;
+    HomeAdapter homeAdapter;
+
+    // recommend
+
+    List<RecommendModel> recommendModelList;
+    RecommentAdapter recommentAdapter;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         db = FirebaseFirestore.getInstance();
+
+
         popularRec = root.findViewById(R.id.pop_rec);
+        homeCatRec = root.findViewById(R.id.explaore_rec);
+        recommendRec = root.findViewById(R.id.recommend_rec);
 
         //pop items
 
@@ -65,7 +82,54 @@ public class HomeFragment extends Fragment {
                         }
                     }
                 });
+//        category
+        homeCatRec.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,  false));
+        categoryList = new ArrayList<>();
+        homeAdapter = new HomeAdapter(getActivity(),categoryList);
+        homeCatRec.setAdapter(homeAdapter);
 
+        db.collection("HomeCategory")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            // Clear the list to prevent duplicates
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                HomeCategory homeCategory = document.toObject(HomeCategory.class);
+                                categoryList.add(homeCategory);
+                                homeAdapter.notifyDataSetChanged();
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+        // recommend
+        recommendRec.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,  false));
+        recommendModelList = new ArrayList<>();
+        recommentAdapter = new RecommentAdapter(getActivity(),recommendModelList);
+        recommendRec.setAdapter(recommentAdapter);
+
+        db.collection("Recommend")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            // Clear the list to prevent duplicates
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                RecommendModel recommendModel = document.toObject(RecommendModel.class);
+                                recommendModelList.add(recommendModel);
+                                recommentAdapter.notifyDataSetChanged();
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
         return root;
     }
 

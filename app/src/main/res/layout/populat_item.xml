@@ -16,6 +16,7 @@
             android:layout_width="300dp"
             android:layout_height="200dp"
             app:riv_corner_radius="14dp"
+
             android:src="@drawable/baseline_local_offer_24"/>
         <TextView
             android:id="@+id/pop_name"
