@@ -143,6 +143,32 @@ public class HomeFragment extends Fragment {
                         }
                     }
                 });
+
+
+        // recommend
+        recommendRec.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,  false));
+        recommendModelList = new ArrayList<>();
+        recommentAdapter = new RecommentAdapter(getActivity(),recommendModelList);
+        recommendRec.setAdapter(recommentAdapter);
+
+        db.collection("Recommend")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            // Clear the list to prevent duplicates
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                RecommendModel recommendModel = document.toObject(RecommendModel.class);
+                                recommendModelList.add(recommendModel);
+                                recommentAdapter.notifyDataSetChanged();
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
         return root;
     }
 
