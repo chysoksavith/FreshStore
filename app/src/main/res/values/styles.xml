@@ -25,9 +25,16 @@
         <item name="android:textSize">@dimen/h2TextSize</item>
         <item name="android:textAllCaps">false</item>
     </style>
+    <style name="blueButtonStyleCart">
+        <item name="android:background">@drawable/backgrouncart</item>
+        <item name="android:fontFamily">@font/poppins_thin</item>
+        <item name="android:textColor">@color/g_white</item>
+        <item name="android:textSize">@dimen/h2TextSize</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
 
     <style name="whiteButtonStyle">
-        <item name="android:background">@drawable/white_background</item>
+        <item name="android:background">@drawable/backgrouncart</item>
         <item name="android:fontFamily">@font/poppins_thin</item>
         <item name="android:textColor">@color/g_black</item>
         <item name="android:textSize">@dimen/h2TextSize</item>
