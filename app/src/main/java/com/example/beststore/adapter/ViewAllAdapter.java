@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.beststore.Models.ViewAllModel;
 import com.example.beststore.R;
+import com.example.beststore.activities.DetailedActivity;
 import com.example.beststore.activities.ViewAllActivity;
 
 import java.util.List;
@@ -42,6 +43,15 @@ public class ViewAllAdapter extends RecyclerView.Adapter<ViewAllAdapter.ViewHold
         holder.description.setText(list.get(position).getDescription());
         holder.rating.setText(list.get(position).getRating());
         holder.price.setText(String.valueOf(list.get(position).getPrice()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailedActivity.class);
+                intent.putExtra("detail", list.get(position));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
