@@ -22,7 +22,7 @@
             style="@style/h3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="50dp"
             android:drawablePadding="6dp"
             android:letterSpacing="0.3"
             android:text="HereWeGo"
