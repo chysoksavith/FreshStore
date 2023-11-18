@@ -40,6 +40,13 @@
 
             android:fontFamily="@font/poppins_light"
             />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/bannersale"
+            android:scaleType="centerCrop"/>
+
         <LinearLayout
             android:layout_marginTop="30dp"
             android:layout_marginLeft="10dp"

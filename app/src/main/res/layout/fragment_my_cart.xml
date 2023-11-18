@@ -4,11 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MyCartFragment">
+    tools:context=".MyCartFragment"
+    android:background="#D5DBDB ">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/new_products_img"
@@ -35,6 +38,58 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/new_products_img"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constrain2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textview6"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="total price : $300"
+            android:textAlignment="center"
+            android:background="@color/orange"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_margin="5sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/buy_now"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.461"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintTop_toBottomOf="@+id/textview6" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buy_now"
+            style="@style/blueButtonStyleCart"
+            android:layout_width="250dp"
+            android:layout_height="@dimen/smallButtonHeight"
+            android:text="CheckOut"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/poppins_light"
+            android:letterSpacing=".1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="10dp"/>
+
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
