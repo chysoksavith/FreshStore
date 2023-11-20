@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/orange"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/imageCartProduct"
+            android:layout_width="80dp"
+            android:layout_height="75dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintTop_toBottomOf="@id/line"
+            app:layout_constraintStart_toStartOf="parent"
+            android:scaleType="centerCrop"
+            />
+        <TextView
+            android:id="@+id/productCartName"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="hello"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/imageCartProduct"
+            app:layout_constraintTop_toTopOf="@id/imageCartProduct"/>
+        <TextView
+            android:id="@+id/cardProductCARTPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="50$"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@id/productCartName"
+            app:layout_constraintTop_toBottomOf="@id/productCartName"/>
+
+
+
+        <ImageView
+            android:id="@+id/imagePlus"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/add"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="10dp" />
+
+
+        <ImageView
+            android:id="@+id/iamgeMimus"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/minimizeeo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            app:layout_constraintTop_toBottomOf="@id/iamgeMimus"
+            app:layout_constraintEnd_toEndOf="@id/iamgeMimus"
+            app:layout_constraintBottom_toTopOf="@id/imagePlus"
+            app:layout_constraintStart_toStartOf="@id/imagePlus"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/add_to_carts"
+            style="@style/blueButtonStyleCart"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="Buy"
+            tools:layout_editor_absoluteX="165dp"
+            tools:layout_editor_absoluteY="51dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
