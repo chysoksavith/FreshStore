@@ -196,7 +196,7 @@ public class HomeFragment extends Fragment {
                                 allProductAdapter.notifyDataSetChanged();
                             }
                         } else {
-                            Toast.makeText(getActivity(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Errors: " + task.getException(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
