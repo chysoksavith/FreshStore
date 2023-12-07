@@ -21,5 +21,17 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/activity_main_drawer" >
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/blueButtonStyleCart"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_gravity="bottom"
+            android:fontFamily="@font/poppins_light"
+            android:letterSpacing=".1"
+            android:text="Logout" />
+
+    </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

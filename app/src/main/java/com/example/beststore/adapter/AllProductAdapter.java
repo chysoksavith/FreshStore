@@ -27,6 +27,7 @@ public class AllProductAdapter extends RecyclerView.Adapter<AllProductAdapter.Vi
         this.allProductModelsList = allProductModelsList;
     }
 
+
     @NonNull
     @Override
     public AllProductAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,7 +39,7 @@ public class AllProductAdapter extends RecyclerView.Adapter<AllProductAdapter.Vi
         Glide.with(context).load(allProductModelsList.get(position).getImg_url()).into(holder.AllProImage);
         holder.name.setText(allProductModelsList.get(position).getName());
 
-        holder.price.setText(String.valueOf(allProductModelsList.get(position).getPrice()));
+        holder.price.setText("$" + String.valueOf(allProductModelsList.get(position).getPrice()));
 
     }
 

@@ -17,6 +17,7 @@ import com.example.beststore.Models.ViewAllModel;
 import com.example.beststore.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Firebase;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -49,10 +50,10 @@ public class DetailedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed);
 
-
+        FirebaseApp.initializeApp(this);
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-        FirebaseApp.initializeApp(this);
+
 
         final  Object object = getIntent().getSerializableExtra("detail");
         if (object instanceof ViewAllModel){
@@ -114,7 +115,7 @@ public class DetailedActivity extends AppCompatActivity {
 
 
     private void addtoCart() {
-        String saveCurrentDate,saveCurrentTime;
+        String saveCurrentDate, saveCurrentTime;
         Calendar calForDate = Calendar.getInstance();
 
         SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
@@ -123,23 +124,29 @@ public class DetailedActivity extends AppCompatActivity {
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:SS A");
         saveCurrentTime = currentTime.format(calForDate.getTime());
 
-        final HashMap<String,Object> cartMap = new HashMap<>();
+        final HashMap<String, Object> cartMap = new HashMap<>();
 
-        cartMap.put("productName", viewAllModel.getName());
-        cartMap.put("currentDate",saveCurrentDate);
+        cartMap.put("productName", name.getText().toString());
+        cartMap.put("currentDate", saveCurrentDate);
+        cartMap.put("currentTime", saveCurrentTime);
 
-        cartMap.put("currentTime",saveCurrentTime);
-        cartMap.put("totalQuantity",quantity.getText().toString());
+        // Initialize FirebaseAuth
+        FirebaseAuth auth = FirebaseAuth.getInstance();
 
+        // Get the user's UID if authenticated, otherwise use a default identifier
+        String userId = (auth.getCurrentUser() != null) ? auth.getCurrentUser().getUid() : "default_user";
 
-        firestore.collection("AddToCart").document(auth.getCurrentUser().getUid())
-                .collection("CurrentUser").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+        firestore.collection("AddToCart")
+                .document(userId)
+                .collection("CurrentUser")
+                .add(cartMap)
+                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         Toast.makeText(DetailedActivity.this, "Added to cart", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 });
-
     }
+
 }
