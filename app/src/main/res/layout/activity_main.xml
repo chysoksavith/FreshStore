@@ -31,7 +31,7 @@
             android:layout_gravity="bottom"
             android:fontFamily="@font/poppins_light"
             android:letterSpacing=".1"
-            android:text="Logout" />
+            android:text="sign out jui" />
 
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>
