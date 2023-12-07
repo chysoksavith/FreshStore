@@ -72,24 +72,7 @@ public class NavCategoryActivity extends AppCompatActivity {
                 }
             });
         }
-//        db.collection("NavCategoryDetailed")
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            // Clear the list to prevent duplicates
-//
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                NavCategoryDetaliedModel navCategoryDetaliedModel = document.toObject(NavCategoryDetaliedModel.class);
-//                                list.add(navCategoryDetaliedModel);
-//                                adapter.notifyDataSetChanged();
-//                            }
-//                        } else {
-//                            Toast.makeText(NavCategoryActivity.this, "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
+
 
     }
 

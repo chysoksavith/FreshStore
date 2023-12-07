@@ -1,6 +1,7 @@
 package com.example.beststore.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.beststore.Models.RecommendModel;
 import com.example.beststore.R;
+import com.example.beststore.activities.DetailedActivity;
 
 import java.util.List;
 
@@ -39,6 +41,7 @@ public class RecommentAdapter extends RecyclerView.Adapter<RecommentAdapter.View
         holder.name.setText(list.get(position).getName());
         holder.description.setText(list.get(position).getDescription());
         holder.rating.setText(list.get(position).getRating());
+
     }
 
     @Override
