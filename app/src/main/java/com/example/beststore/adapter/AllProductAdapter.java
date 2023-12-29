@@ -41,6 +41,7 @@ public class AllProductAdapter extends RecyclerView.Adapter<AllProductAdapter.Vi
 
         holder.price.setText("$" + String.valueOf(allProductModelsList.get(position).getPrice()));
 
+
     }
 
     @Override

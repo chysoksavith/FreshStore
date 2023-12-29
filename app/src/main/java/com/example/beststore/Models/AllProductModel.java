@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.Serializable;
 
-public class AllProductModel {
+public class AllProductModel implements  Serializable {
     String  name;
     String img_url;
     int price;

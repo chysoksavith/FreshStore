@@ -41,7 +41,16 @@ public class RecommentAdapter extends RecyclerView.Adapter<RecommentAdapter.View
         holder.name.setText(list.get(position).getName());
         holder.description.setText(list.get(position).getDescription());
         holder.rating.setText(list.get(position).getRating());
+        holder.price.setText(String.valueOf(list.get(position).getPrice()));
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailedActivity.class);
+                intent.putExtra("detail", list.get(position));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -52,7 +61,7 @@ public class RecommentAdapter extends RecyclerView.Adapter<RecommentAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView;
-        TextView name,description,rating;
+        TextView name,description,rating, price;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -60,6 +69,7 @@ public class RecommentAdapter extends RecyclerView.Adapter<RecommentAdapter.View
             name = itemView.findViewById(R.id.rec_name);
             description = itemView.findViewById(R.id.rec_dec);
             rating = itemView.findViewById(R.id.rec_ratign);
+            price = itemView.findViewById(R.id.rec_price);
         }
     }
 }

@@ -13,6 +13,8 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
+import com.example.beststore.Models.AllProductModel;
+import com.example.beststore.Models.RecommendModel;
 import com.example.beststore.Models.ViewAllModel;
 import com.example.beststore.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,19 +33,19 @@ import java.util.HashMap;
 public class DetailedActivity extends AppCompatActivity {
 
 
-    ImageView detailedImaage;
-    TextView price,rating,description,name;
-    Button addtoCart;
-    ImageView addItem,removeItem;
+    private ImageView detailedImage;
+    private TextView price, rating, description, name, quantity;
+    private Button addToCart;
+    private ImageView addItem, removeItem;
 
-    ViewAllModel viewAllModel = null;
+    private ViewAllModel viewAllModel;
+    private RecommendModel recommendModel;
 
-    TextView quantity;
-    int totalQuantity = 1;
-    int totalPrice = 0;
+    private int totalQuantity = 1;
+    private int totalPrice = 0;
 
-    FirebaseFirestore firestore;
-    FirebaseAuth auth;
+    private FirebaseFirestore firestore;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,50 +56,22 @@ public class DetailedActivity extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
 
+        initializeViews();
+        initializeData();
 
-        final  Object object = getIntent().getSerializableExtra("detail");
-        if (object instanceof ViewAllModel){
-            viewAllModel = (ViewAllModel) object;
-        }
-
-        quantity = findViewById(R.id.quantity);
-
-        detailedImaage = findViewById(R.id.detailed_img);
-        addItem = findViewById(R.id.add_items);
-        removeItem = findViewById(R.id.remove_item);
-
-        price = findViewById(R.id.detail_price);
-        rating = findViewById(R.id.detail_rating);
-        description = findViewById(R.id.detail_decription);
-        name = findViewById(R.id.detail_name);
-
-        totalPrice = viewAllModel.getPrice() * totalQuantity;
-
-
-        if(viewAllModel != null){
-            Glide.with(getApplicationContext()).load(viewAllModel.getImg_url()).into(detailedImaage);
-            rating.setText(viewAllModel.getRating());
-            description.setText(viewAllModel.getDescription());
-            name.setText(viewAllModel.getName());
-            price.setText("Price: $" + String.valueOf(viewAllModel.getPrice()));
-
-        }
-
-        addtoCart = findViewById(R.id.addTocart);
-        addtoCart.setOnClickListener(new View.OnClickListener() {
+        addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addtoCart();
             }
-
-
         });
+
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (totalQuantity < 10){
+                if (totalQuantity < 10) {
                     totalQuantity++;
-                    quantity.setText(String.valueOf(totalQuantity));
+                    updateQuantity();
                 }
             }
         });
@@ -107,12 +81,67 @@ public class DetailedActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (totalQuantity > 1) {
                     totalQuantity--;
-                    quantity.setText(String.valueOf(totalQuantity));
+                    updateQuantity();
                 }
             }
         });
     }
 
+    private void initializeViews() {
+        detailedImage = findViewById(R.id.detailed_img);
+        addItem = findViewById(R.id.add_items);
+        removeItem = findViewById(R.id.remove_item);
+        price = findViewById(R.id.detail_price);
+        rating = findViewById(R.id.detail_rating);
+        description = findViewById(R.id.detail_decription);
+        name = findViewById(R.id.detail_name);
+        addToCart = findViewById(R.id.addTocart);
+        quantity = findViewById(R.id.quantity);
+    }
+
+    private void initializeData() {
+        Object object = getIntent().getSerializableExtra("detail");
+
+        if (object instanceof ViewAllModel) {
+            viewAllModel = (ViewAllModel) object;
+            displayViewAllDetails();
+        } else if (object instanceof RecommendModel) {
+            recommendModel = (RecommendModel) object;
+            displayRecommendDetails();
+        } else {
+            handleNullIntentExtra();
+        }
+    }
+
+    private void displayViewAllDetails() {
+        if (viewAllModel != null) {
+            Glide.with(getApplicationContext()).load(viewAllModel.getImg_url()).into(detailedImage);
+            rating.setText(viewAllModel.getRating());
+            description.setText(viewAllModel.getDescription());
+            name.setText(viewAllModel.getName());
+            price.setText("Price: $" + String.valueOf(viewAllModel.getPrice()));
+        }
+    }
+
+    private void displayRecommendDetails() {
+        if (recommendModel != null) {
+            Glide.with(getApplicationContext()).load(recommendModel.getImg_url()).into(detailedImage);
+            rating.setText(recommendModel.getRating());
+            description.setText(recommendModel.getDescription());
+            name.setText(recommendModel.getName());
+            price.setText("Price: $" + String.valueOf(recommendModel.getPrice()));
+        }
+    }
+
+    private void handleNullIntentExtra() {
+        Log.e("DetailedActivity", "Error: Intent extra is null");
+        Toast.makeText(this, "Error loading details", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    private void updateQuantity() {
+        quantity.setText(String.valueOf(totalQuantity));
+    }
 
     private void addtoCart() {
         String saveCurrentDate, saveCurrentTime;
@@ -130,10 +159,6 @@ public class DetailedActivity extends AppCompatActivity {
         cartMap.put("currentDate", saveCurrentDate);
         cartMap.put("currentTime", saveCurrentTime);
 
-        // Initialize FirebaseAuth
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-
-        // Get the user's UID if authenticated, otherwise use a default identifier
         String userId = (auth.getCurrentUser() != null) ? auth.getCurrentUser().getUid() : "default_user";
 
         firestore.collection("AddToCart")

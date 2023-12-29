@@ -1,19 +1,21 @@
 package com.example.beststore.Models;
 
-public class RecommendModel {
+import java.io.Serializable;
+
+public class RecommendModel implements Serializable {
     String name;
     String img_url;
     String description;
-//    String price;
+    int price;
     String rating;
     public RecommendModel(){
 
     }
-    public RecommendModel(String name, String img_url, String description, String price, String rating) {
+    public RecommendModel(String name, String img_url, String description, int price, String rating) {
         this.name = name;
         this.img_url = img_url;
         this.description = description;
-//        this.price = price;
+        this.price = price;
         this.rating = rating;
     }
 
@@ -41,13 +43,13 @@ public class RecommendModel {
         this.description = description;
     }
 
-//    public String getPrice() {
-//        return price;
-//    }
-//
-//    public void setPrice(String price) {
-//        this.price = price;
-//    }
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
     public String getRating() {
         return rating;

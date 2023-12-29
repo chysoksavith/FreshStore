@@ -36,6 +36,14 @@
             android:maxLines="1"
             android:text="desc"
             android:singleLine="true"/>
+        <TextView
+            android:id="@+id/rec_price"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="desc"
+            android:singleLine="true"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

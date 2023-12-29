@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.beststore.Models.PopularModel;
 import com.example.beststore.R;
+import com.example.beststore.activities.DetailedActivity;
 import com.example.beststore.activities.ViewAllActivity;
 
 import java.util.List;
@@ -41,6 +42,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         holder.rating.setText(popularModelList.get(position).getRating());
         holder.description.setText(popularModelList.get(position).getDescription());
         holder.discount.setText(popularModelList.get(position).getDiscound());
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
