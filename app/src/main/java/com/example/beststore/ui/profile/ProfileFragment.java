@@ -15,11 +15,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
+import com.example.beststore.Models.UserModel;
 import com.example.beststore.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -51,7 +57,19 @@ public class ProfileFragment extends Fragment {
         address = root.findViewById(R.id.profile_number);
         update = root.findViewById(R.id.update);
 
+        database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                UserModel userModel = snapshot.getValue(UserModel.class);
+                                Glide.with(getContext()).load(userModel.getProfileImg()).into(profilteImg);
+                            }
 
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
         profilteImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +105,17 @@ public class ProfileFragment extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT ).show();
+
+                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
+                                    .child("profileImg").setValue(uri.toString());
+                            Toast.makeText(getContext(), "profile picture upload",  Toast.LENGTH_SHORT).show();
+
+
+                        }
+                    });
                 }
             });
         }

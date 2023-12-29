@@ -99,7 +99,7 @@
 
         android:layout_height="@dimen/smallButtonHeight"
         android:letterSpacing="0.5"
-        android:text="Register"
+        android:text="Update"
         app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
