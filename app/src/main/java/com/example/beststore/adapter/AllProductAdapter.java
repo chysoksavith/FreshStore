@@ -41,6 +41,14 @@ public class AllProductAdapter extends RecyclerView.Adapter<AllProductAdapter.Vi
 
         holder.price.setText("$" + String.valueOf(allProductModelsList.get(position).getPrice()));
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailedActivity.class);
+                intent.putExtra("detail", allProductModelsList.get(position));
+                context.startActivity(intent);
+            }
+        });
 
     }
 

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.BestStore"
         tools:targetApi="34">
         <activity
+            android:name=".activities.ShowAllActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.NavCategoryActivity"
             android:exported="false" />
         <activity

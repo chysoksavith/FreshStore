@@ -40,6 +40,7 @@ public class DetailedActivity extends AppCompatActivity {
 
     private ViewAllModel viewAllModel;
     private RecommendModel recommendModel;
+    private AllProductModel allProductModel;
 
     private int totalQuantity = 1;
     private int totalPrice = 0;
@@ -108,6 +109,9 @@ public class DetailedActivity extends AppCompatActivity {
         } else if (object instanceof RecommendModel) {
             recommendModel = (RecommendModel) object;
             displayRecommendDetails();
+        } else if (object instanceof  AllProductModel) {
+            allProductModel = (AllProductModel) object;
+            displayAllProductDetails();
         } else {
             handleNullIntentExtra();
         }
@@ -130,6 +134,15 @@ public class DetailedActivity extends AppCompatActivity {
             description.setText(recommendModel.getDescription());
             name.setText(recommendModel.getName());
             price.setText("Price: $" + String.valueOf(recommendModel.getPrice()));
+        }
+    }
+
+    private void displayAllProductDetails(){
+        if(allProductModel != null){
+            Glide.with(getApplicationContext()).load(allProductModel.getImg_url()).into(detailedImage);
+            name.setText(allProductModel.getName());
+            price.setText("Price:  $" + String.valueOf(allProductModel.getPrice()));
+
         }
     }
 

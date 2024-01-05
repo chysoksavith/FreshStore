@@ -1,5 +1,6 @@
 package com.example.beststore.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -25,6 +26,7 @@ import com.example.beststore.Models.PopularModel;
 import com.example.beststore.Models.RecommendModel;
 import com.example.beststore.Models.ViewAllModel;
 import com.example.beststore.R;
+import com.example.beststore.activities.ShowAllActivity;
 import com.example.beststore.adapter.AllProductAdapter;
 import com.example.beststore.adapter.HomeAdapter;
 import com.example.beststore.adapter.PopularAdapter;
@@ -42,7 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
-
+    TextView catShowAll,popularShowAll,recommendProductShowAll,productShowAll;
     ScrollView scrollView;
     ProgressBar progressBar;
     RecyclerView popularRec, homeCatRec, recommendRec, allProductRec;
@@ -72,7 +74,40 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         db = FirebaseFirestore.getInstance();
 
-
+        // show all or view all function
+        catShowAll = root.findViewById(R.id.view_all_explore);
+        popularShowAll = root.findViewById(R.id.view_all_popular);
+        recommendProductShowAll = root.findViewById(R.id.view_all_recommend);
+        productShowAll = root.findViewById(R.id.view_all_product);
+        catShowAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ShowAllActivity.class);
+                startActivity(intent);
+            }
+        });
+        productShowAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ShowAllActivity.class);
+                startActivity(intent);
+            }
+        });
+        popularShowAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ShowAllActivity.class);
+                startActivity(intent);
+            }
+        });
+        recommendProductShowAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ShowAllActivity.class);
+                startActivity(intent);
+            }
+        });
+        // recycler view in homefragment
         popularRec = root.findViewById(R.id.pop_rec);
         homeCatRec = root.findViewById(R.id.explaore_rec);
         recommendRec = root.findViewById(R.id.recommend_rec);
