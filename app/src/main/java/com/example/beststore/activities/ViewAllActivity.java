@@ -54,19 +54,7 @@ public class ViewAllActivity extends AppCompatActivity {
                 }
             });
         }
-        if(type !=  null && type.equalsIgnoreCase("drink")){
-            firestore.collection("AllProducts").whereEqualTo("type", "drink").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-                    for(DocumentSnapshot documentSnapshot:task.getResult().getDocuments()){
-                        ViewAllModel viewAllModel = documentSnapshot.toObject(ViewAllModel.class);
-                        viewAllModelList.add(viewAllModel);
-                        viewAllAdapter.notifyDataSetChanged();
-                    }
-                }
-            });
-        }
 
 //
         ///////// getting drink
