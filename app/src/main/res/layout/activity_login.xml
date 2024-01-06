@@ -25,7 +25,7 @@
             android:layout_marginTop="50dp"
             android:drawablePadding="6dp"
             android:letterSpacing="0.3"
-            android:text="HereWeGo"
+            android:text="FreshStore"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideLineLoginLeft"
             app:layout_constraintTop_toTopOf="parent" />
